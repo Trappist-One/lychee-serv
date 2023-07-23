@@ -2,9 +2,15 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.lychee</groupId>
     <artifactId>lychee-serv</artifactId>
-    <packaging>jar</packaging>
+    <packaging>pom</packaging>
     <version>1.0</version>
     <description>Lychee 后台服务</description>
+    <modules>
+        <module>common</module>
+        <module>framework</module>
+        <module>biz</module>
+        <module>admin</module>
+    </modules>
 
     <properties>
         <jdk.version>17</jdk.version>
