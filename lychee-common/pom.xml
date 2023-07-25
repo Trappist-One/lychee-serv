@@ -16,22 +16,22 @@
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
-            <scope>provided</scope> <!-- 设置为 provided，只有工具类需要使用到 -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-expression</artifactId>
-            <scope>provided</scope> <!-- 设置为 provided，只有工具类需要使用到 -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-aop</artifactId>
-            <scope>provided</scope> <!-- 设置为 provided，只有工具类需要使用到 -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.aspectj</groupId>
             <artifactId>aspectjweaver</artifactId>
-            <scope>provided</scope> <!-- 设置为 provided，只有工具类需要使用到 -->
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
@@ -41,17 +41,35 @@
             <optional>true</optional>
         </dependency>
 
+        <!--jackson-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+
         <!-- Web 相关 -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
-            <scope>provided</scope> <!-- 设置为 provided，只有工具类需要使用到 -->
+            <scope>provided</scope>
         </dependency>
 
         <dependency>
             <groupId>jakarta.servlet</groupId>
             <artifactId>jakarta.servlet-api</artifactId>
-            <scope>provided</scope> <!-- 设置为 provided，只有工具类需要使用到 -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>cn.hutool</groupId>
@@ -64,12 +82,12 @@
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
-            <scope>provided</scope> <!-- 设置为 provided，只有工具类需要使用到 -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
-            <scope>provided</scope> <!-- 设置为 provided，只有工具类需要使用到 -->
+            <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>io.swagger.core.v3</groupId> <!-- 接口文档：使用最新版本的 Swagger 模型 -->
