@@ -12,6 +12,7 @@
         <module>lychee-system</module>
         <module>lychee-gateway</module>
         <module>lychee-auth</module>
+        <module>lychee-framework</module>
     </modules>
 
     <properties>
