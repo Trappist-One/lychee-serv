@@ -1,4 +1,4 @@
-package org.lychee.framework.env.web;
+package org.lychee.framework.env.core.web;
 
 import cn.hutool.core.util.StrUtil;
 import org.lychee.framework.env.core.context.EnvContextHolder;

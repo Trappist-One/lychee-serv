@@ -1,6 +1,7 @@
 package org.lychee.framework.env.core.context;
 
 import cn.hutool.core.collection.CollUtil;
+import com.alibaba.ttl.TransmittableThreadLocal;
 
 import java.util.ArrayList;
 import java.util.List;
