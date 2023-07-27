@@ -3,6 +3,9 @@ package org.lychee.common.exception;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.experimental.Accessors;
+import org.lychee.common.exception.constants.GlobalErrorCodeConstants;
+import org.lychee.common.exception.constants.ServiceErrorCodeRange;
 
 /**
  * @author xu
@@ -14,6 +17,7 @@ import lombok.EqualsAndHashCode;
 @Data
 @EqualsAndHashCode(callSuper = true)
 @AllArgsConstructor
+@Accessors(chain = true)
 public class ServerException extends RuntimeException {
     /**
      *
@@ -21,4 +25,9 @@ public class ServerException extends RuntimeException {
     private Integer code;
 
     private String message;
+
+    public ServerException(ErrorCode errorCode) {
+        this.code = errorCode.getCode();
+        this.message = errorCode.getMsg();
+    }
 }
