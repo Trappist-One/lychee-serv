@@ -9,10 +9,10 @@
     <modules>
         <module>lychee-dependencies</module>
         <module>lychee-common</module>
-        <module>lychee-system</module>
         <module>lychee-gateway</module>
         <module>lychee-auth</module>
         <module>lychee-framework</module>
+        <module>lychee-app</module>
     </modules>
 
     <properties>
