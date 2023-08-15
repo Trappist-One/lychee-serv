@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>lychee-framework</artifactId>
+        <groupId>org.lychee</groupId>
+        <version>${revision}</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>lychee-spring-boot-starter-flowable</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.lychee</groupId>
+            <artifactId>lychee-common</artifactId>
+        </dependency>
+
+        <!-- Web 相关 -->
+        <dependency>
+            <groupId>org.lychee</groupId>
+            <artifactId>lychee-spring-boot-starter-security</artifactId>
+        </dependency>
+
+        <!-- flowable 工作流相关 -->
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter-process</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.flowable</groupId>
+            <artifactId>flowable-spring-boot-starter-actuator</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

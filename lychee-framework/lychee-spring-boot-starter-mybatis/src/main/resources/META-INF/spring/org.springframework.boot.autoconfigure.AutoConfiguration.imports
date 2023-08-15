@@ -1,0 +1,2 @@
+org.lychee.framework.datasource.config.LycheeDataSourceAutoConfiguration
+org.lychee.framework.mybatis.config.LycheeMybatisAutoConfiguration

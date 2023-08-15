@@ -1,0 +1,2 @@
+org.lychee.framework.datapermission.config.LycheeDataPermissionAutoConfiguration
+org.lychee.framework.datapermission.config.LycheeDeptDataPermissionAutoConfiguration

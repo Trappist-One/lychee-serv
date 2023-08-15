@@ -1,0 +1,2 @@
+org.springframework.boot.env.EnvironmentPostProcessor=\
+    org.lychee.framework.env.config.EnvEnvironmentPostProcessor

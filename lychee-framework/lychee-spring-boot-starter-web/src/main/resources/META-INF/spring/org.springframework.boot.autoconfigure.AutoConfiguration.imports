@@ -1,0 +1,5 @@
+org.lychee.framework.apilog.config.LycheeApiLogAutoConfiguration
+org.lychee.framework.jackson.config.LycheeJacksonAutoConfiguration
+org.lychee.framework.swagger.config.LycheeSwaggerAutoConfiguration
+org.lychee.framework.web.config.LycheeWebAutoConfiguration
+org.lychee.framework.apilog.config.LycheeApiLogRpcAutoConfiguration

@@ -1,0 +1,3 @@
+org.lychee.framework.security.config.LycheeSecurityRpcAutoConfiguration
+org.lychee.framework.security.config.LycheeSecurityAutoConfiguration
+org.lychee.framework.security.config.LycheeWebSecurityConfigurerAdapter

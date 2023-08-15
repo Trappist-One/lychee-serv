@@ -1,0 +1,2 @@
+org.lychee.framework.quartz.config.LycheeXxlJobAutoConfiguration
+org.lychee.framework.quartz.config.LycheeAsyncAutoConfiguration

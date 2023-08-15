@@ -1,0 +1,162 @@
+version: '3'
+services:
+  lychee-gateway:
+    image: lychee-gateway
+    container_name: lychee-gateway
+    environment:
+      - TZ=Asia/Shanghai # 配置程序默认时区为上海（中国标准时间）
+      - JAVA_TOOL_OPTIONS=-javaagent:/data/skywalking/skywalking-agent/skywalking-agent.jar # 配置skywalking
+      - SW_AGENT_NAME=lychee-gateway
+      - SW_AGENT_TRACE_IGNORE_PATH=Redisson/PING,/actuator/**,/admin/**
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=[YOUR_SKYWALKING_ADDR] # 请替换 your.skywalking.addr 为你的 skywalking 地址
+      - SPRING_PROFILES_ACTIVE=test # 指定程序运行环境
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=[YOUR_NACOS_ADDR] # 配置中心地址
+      - SPRING_CLOUD_NACOS_CONFIG_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+      - SPRING_CLOUD_NACOS_SERVER_ADDR=[YOUR_NACOS_ADDR]  # 注册中心地址
+      - SPRING_CLOUD_NACOS_DISCOVERY_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+    volumes:
+      - /docker/lychee-cloud/logs:/root/logs/
+      - /data/skywalking/skywalking-agent:/data/skywalking/skywalking-agent
+    restart: always
+    network_mode: host # 以主机网络环境运行
+  lychee-system:
+    image: lychee-module-system-biz
+    container_name: lychee-system
+    environment:
+      - TZ=Asia/Shanghai # 配置程序默认时区为上海（中国标准时间）
+      - JAVA_TOOL_OPTIONS=-javaagent:/data/skywalking/skywalking-agent/skywalking-agent.jar # 配置skywalking
+      - SW_AGENT_NAME=lychee-gateway
+      - SW_AGENT_TRACE_IGNORE_PATH=Redisson/PING,/actuator/**,/admin/**
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=[YOUR_SKYWALKING_ADDR] # 请替换 your.skywalking.addr 为你的 skywalking 地址
+      - SPRING_PROFILES_ACTIVE=test # 指定程序运行环境
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=[YOUR_NACOS_ADDR] # 配置中心地址
+      - SPRING_CLOUD_NACOS_CONFIG_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+      - SPRING_CLOUD_NACOS_SERVER_ADDR=[YOUR_NACOS_ADDR]  # 注册中心地址
+      - SPRING_CLOUD_NACOS_DISCOVERY_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+    volumes:
+      - /docker/lychee-cloud/logs:/root/logs/
+      - /data/skywalking/skywalking-agent:/data/skywalking/skywalking-agent
+    healthcheck:
+      test: [ "CMD","curl","-f","http://localhost:48081" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    restart: always
+    network_mode: host
+  lychee-infra:
+    image: lychee-module-infra-biz
+    container_name: lychee-infra
+    environment:
+      - TZ=Asia/Shanghai # 配置程序默认时区为上海（中国标准时间）
+      - JAVA_TOOL_OPTIONS=-javaagent:/data/skywalking/skywalking-agent/skywalking-agent.jar # 配置skywalking
+      - SW_AGENT_NAME=lychee-gateway
+      - SW_AGENT_TRACE_IGNORE_PATH=Redisson/PING,/actuator/**,/admin/**
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=[YOUR_SKYWALKING_ADDR] # 请替换 your.skywalking.addr 为你的 skywalking 地址
+      - SPRING_PROFILES_ACTIVE=test # 指定程序运行环境
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=[YOUR_NACOS_ADDR] # 配置中心地址
+      - SPRING_CLOUD_NACOS_CONFIG_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+      - SPRING_CLOUD_NACOS_SERVER_ADDR=[YOUR_NACOS_ADDR]  # 注册中心地址
+      - SPRING_CLOUD_NACOS_DISCOVERY_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+    volumes:
+      - /docker/lychee-cloud/logs:/root/logs/
+      - /data/skywalking/skywalking-agent:/data/skywalking/skywalking-agent
+    restart: always
+    network_mode: host
+    healthcheck:
+      test: [ "CMD","curl","-f","http://localhost:48082" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    depends_on:
+      lychee-system:
+        condition: service_healthy
+  lychee-report:
+    image: lychee-module-report-biz
+    container_name: lychee-report
+    environment:
+      - TZ=Asia/Shanghai # 配置程序默认时区为上海（中国标准时间）
+      - JAVA_TOOL_OPTIONS=-javaagent:/data/skywalking/skywalking-agent/skywalking-agent.jar # 配置skywalking
+      - SW_AGENT_NAME=lychee-gateway
+      - SW_AGENT_TRACE_IGNORE_PATH=Redisson/PING,/actuator/**,/admin/**
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=[YOUR_SKYWALKING_ADDR] # 请替换 your.skywalking.addr 为你的 skywalking 地址
+      - SPRING_PROFILES_ACTIVE=test # 指定程序运行环境
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=[YOUR_NACOS_ADDR] # 配置中心地址
+      - SPRING_CLOUD_NACOS_CONFIG_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+      - SPRING_CLOUD_NACOS_SERVER_ADDR=[YOUR_NACOS_ADDR]  # 注册中心地址
+      - SPRING_CLOUD_NACOS_DISCOVERY_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+    volumes:
+      - /docker/lychee-cloud/logs:/root/logs/
+      - /data/skywalking/skywalking-agent:/data/skywalking/skywalking-agent
+    restart: always
+    network_mode: host
+    depends_on:
+      lychee-infra:
+        condition: service_healthy
+  lychee-bpm:
+    image: lychee-module-bpm-biz
+    container_name: lychee-bpm
+    environment:
+      - TZ=Asia/Shanghai # 配置程序默认时区为上海（中国标准时间）
+      - JAVA_TOOL_OPTIONS=-javaagent:/data/skywalking/skywalking-agent/skywalking-agent.jar # 配置skywalking
+      - SW_AGENT_NAME=lychee-gateway
+      - SW_AGENT_TRACE_IGNORE_PATH=Redisson/PING,/actuator/**,/admin/**
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=[YOUR_SKYWALKING_ADDR] # 请替换 your.skywalking.addr 为你的 skywalking 地址
+      - SPRING_PROFILES_ACTIVE=test # 指定程序运行环境
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=[YOUR_NACOS_ADDR] # 配置中心地址
+      - SPRING_CLOUD_NACOS_CONFIG_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+      - SPRING_CLOUD_NACOS_SERVER_ADDR=[YOUR_NACOS_ADDR]  # 注册中心地址
+      - SPRING_CLOUD_NACOS_DISCOVERY_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+    volumes:
+      - /docker/lychee-cloud/logs:/root/logs/
+      - /data/skywalking/skywalking-agent:/data/skywalking/skywalking-agent
+    restart: always
+    network_mode: host
+    depends_on:
+      lychee-infra:
+        condition: service_healthy
+  lychee-pay:
+    image: lychee-module-pay-biz
+    container_name: lychee-pay
+    environment:
+      - TZ=Asia/Shanghai # 配置程序默认时区为上海（中国标准时间）
+      - JAVA_TOOL_OPTIONS=-javaagent:/data/skywalking/skywalking-agent/skywalking-agent.jar # 配置skywalking
+      - SW_AGENT_NAME=lychee-gateway
+      - SW_AGENT_TRACE_IGNORE_PATH=Redisson/PING,/actuator/**,/admin/**
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=[YOUR_SKYWALKING_ADDR] # 请替换 your.skywalking.addr 为你的 skywalking 地址
+      - SPRING_PROFILES_ACTIVE=test # 指定程序运行环境
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=[YOUR_NACOS_ADDR] # 配置中心地址
+      - SPRING_CLOUD_NACOS_CONFIG_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+      - SPRING_CLOUD_NACOS_SERVER_ADDR=[YOUR_NACOS_ADDR]  # 注册中心地址
+      - SPRING_CLOUD_NACOS_DISCOVERY_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+    volumes:
+      - /docker/lychee-cloud/logs:/root/logs/
+      - /data/skywalking/skywalking-agent:/data/skywalking/skywalking-agent
+    restart: always
+    network_mode: host
+    depends_on:
+      lychee-infra:
+        condition: service_healthy
+  lychee-mp:
+    image: lychee-module-mp-biz
+    container_name: lychee-mp
+    environment:
+      - TZ=Asia/Shanghai # 配置程序默认时区为上海（中国标准时间）
+      - JAVA_TOOL_OPTIONS=-javaagent:/data/skywalking/skywalking-agent/skywalking-agent.jar # 配置skywalking
+      - SW_AGENT_NAME=lychee-gateway
+      - SW_AGENT_TRACE_IGNORE_PATH=Redisson/PING,/actuator/**,/admin/**
+      - SW_AGENT_COLLECTOR_BACKEND_SERVICES=[YOUR_SKYWALKING_ADDR] # 请替换 your.skywalking.addr 为你的 skywalking 地址
+      - SPRING_PROFILES_ACTIVE=test # 指定程序运行环境
+      - SPRING_CLOUD_NACOS_CONFIG_SERVER_ADDR=[YOUR_NACOS_ADDR] # 配置中心地址
+      - SPRING_CLOUD_NACOS_CONFIG_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+      - SPRING_CLOUD_NACOS_SERVER_ADDR=[YOUR_NACOS_ADDR]  # 注册中心地址
+      - SPRING_CLOUD_NACOS_DISCOVERY_NAMESPACE=[YOUR_NAMESPACE] # 命名空间
+    volumes:
+      - /docker/lychee-cloud/logs:/root/logs/
+      - /data/skywalking/skywalking-agent:/data/skywalking/skywalking-agent
+    restart: always
+    network_mode: host
+    depends_on:
+      lychee-infra:
+        condition: service_healthy

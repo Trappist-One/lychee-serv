@@ -1,0 +1,2 @@
+org.lychee.framework.env.config.LycheeEnvWebAutoConfiguration
+org.lychee.framework.env.config.LycheeEnvRpcAutoConfiguration

@@ -1,0 +1,3 @@
+org.lychee.framework.tenant.config.LycheeTenantRpcAutoConfiguration
+org.lychee.framework.tenant.config.LycheeTenantAutoConfiguration
+org.lychee.framework.tenant.config.LycheeTenantMQAutoConfiguration

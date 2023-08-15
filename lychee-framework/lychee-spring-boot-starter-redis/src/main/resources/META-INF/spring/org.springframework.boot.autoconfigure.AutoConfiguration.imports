@@ -1,0 +1,2 @@
+org.lychee.framework.redis.config.LycheeRedisAutoConfiguration
+org.lychee.framework.redis.config.LycheeCacheAutoConfiguration
